@@ -1,3 +1,35 @@
 page-individual {
 
+  h3 {
+    font-size: 36px;
+  }
+
+  .empNo {
+    height: 110px;
+    border: 3px solid #DDD;
+    font-size: 92px;
+    margin-bottom: 10px;
+    text-align: right;
+    padding-right: 15px;
+    letter-spacing: 15px;
+  }
+
+  .ten-key {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    button {
+      width: calc(100% / 3 - 6px);
+      height: 1.8em;
+      font-size: 48px;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  .next-button {
+    font-size: 64px;
+    height: 1.6em;
+  }
 }
