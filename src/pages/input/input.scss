@@ -1,0 +1,53 @@
+page-input {
+  ion-col {
+    display: flex;
+    align-items: center;
+  }
+  .right-item {
+    margin-left: auto;
+  }
+  .inline-button {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .check-button {
+    width: 3em;
+  }
+  .grid-section {
+    margin-bottom: 10px;
+  }
+  .caption-row {
+    ion-col {
+      font-weight: bold;
+      font-size: 16px;
+      // color: #488aff;
+      background-color: #eef;
+    }
+  }
+  .thead {
+    font-weight: bold;
+  }
+  .content-row {
+    border-bottom: 3px solid #ddd;
+    input {
+      margin: 0;
+    }
+  }
+  .other-buttons {
+    text-align: right;
+  }
+  .emp {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .rem-col {
+    textarea {
+      margin: 0;
+      height: 5em;
+    }
+  }
+  .attendance-button {
+    font-size: 64px;
+    height: 1.6em;
+  }
+}

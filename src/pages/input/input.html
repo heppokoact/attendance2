@@ -1,0 +1,129 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>出欠入力</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid class="grid-section">
+    <ion-row class="caption-row">
+      <ion-col>
+        <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;出欠記録
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="content-row">
+      <ion-col col-3 class="thead">社員名</ion-col>
+      <ion-col col-2 class="emp">{{$zeroSuppress(v.empNo)}}</ion-col>
+      <ion-col col-7 class="emp">{{v.empName}}</ion-col>
+    </ion-row>
+
+    <ion-row class="content-row">
+      <ion-col col-3 class="thead">出欠記録</ion-col>
+      <ion-col col-9>{{$AttCat[v.attCat]}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="grid-section">
+    <ion-row class="caption-row">
+      <ion-col>
+        <ion-icon name="ios-briefcase-outline"></ion-icon>&nbsp;配布物・提出物
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="content-row">
+      <ion-col col-3 class="thead">
+        配布物&nbsp;
+        <button ion-button outline icon-only small class="right-item inline-button" (click)="showHandoutList()">
+          <ion-icon name="list"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-9>
+        <ion-input type="text" [(ngModel)]="v.handoutName"></ion-input>
+        <ng-container *ngIf="v.handoutSitCat == '0'; else handoutElse">
+          <button ion-button small class="check-button inline-button" (click)="v.handoutSitCat = '1'">OK</button>
+        </ng-container>
+        <ng-template #handoutElse>
+          <button ion-button small color="danger" class="check-button inline-button" (click)="v.handoutSitCat = '0'">済</button>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="content-row">
+      <ion-col col-3 class="thead">
+        提出物&nbsp;
+        <button ion-button outline icon-only small class="right-item inline-button" (click)="showRcptList()">
+          <ion-icon name="list"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-9>
+        <ion-input type="text" [(ngModel)]="v.rcptName"></ion-input>
+        <ng-container *ngIf="v.rcptSitCat == '0'; else rcptElse">
+          <button ion-button small class="check-button inline-button" (click)="v.rcptSitCat = '1'">OK</button>
+        </ng-container>
+        <ng-template #rcptElse>
+          <button ion-button small color="danger" class="check-button inline-button" (click)="v.rcptSitCat = '0'">済</button>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="grid-section">
+    <ion-row class="caption-row">
+      <ion-col>
+        <ion-icon name="ios-clipboard-outline"></ion-icon>&nbsp;その他
+        <button ion-button clear icon-only small class="right-item inline-button" (click)="v.showDetail = !v.showDetail">
+          <ion-icon name="ios-add-circle-outline"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="content-row">
+      <ion-col col-3 class="thead">
+        メモ&nbsp;
+        <button ion-button outline icon-only small class="right-item inline-button" (click)="showRemColList()">
+          <ion-icon name="list"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-9>
+        <ion-textarea class="rem-col" [(ngModel)]="v.remCol"></ion-textarea>
+      </ion-col>
+    </ion-row>
+
+    <ng-container *ngIf="v.showDetail">
+      <ion-row class="content-row">
+        <ion-col col-3 class="thead">開封状況</ion-col>
+        <ion-col col-9>{{$Disp[v.dispCat || '0']}}</ion-col>
+      </ion-row>
+
+      <ion-row class="content-row">
+        <ion-col col-3 class="thead">所属</ion-col>
+        <ion-col col-9>{{v.grpName}}</ion-col>
+      </ion-row>
+
+      <ion-row class="content-row">
+        <ion-col col-3 class="thead">プロジェクト</ion-col>
+        <ion-col col-9>{{v.pjName}}</ion-col>
+      </ion-row>
+
+      <ion-row class="content-row">
+        <ion-col col-3 class="thead">役職</ion-col>
+        <ion-col col-9>{{v.postName}}</ion-col>
+      </ion-row>
+    </ng-container>
+
+  </ion-grid>
+
+  <button ion-button block class="attendance-button" (click)="pushAttendance()">出席</button>
+  <div class="other-buttons">
+    <button ion-button small [color]="button.color" *ngFor="let button of otherButtons" (click)="register(button.attCat)">{{button.name}}</button>
+  </div>
+
+</ion-content>

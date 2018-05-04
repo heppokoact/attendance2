@@ -1,32 +1,39 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component, ViewChild } from "@angular/core";
+import { Nav, Platform } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { IndividualPage } from '../pages/individual/individual';
+import { HomePage } from "../pages/home/home";
+import { ListPage } from "../pages/list/list";
+import { IndividualPage } from "../pages/individual/individual";
+import { Storage } from "@ionic/storage";
+import { StoreServiceProvider } from "../providers/store-service/store-service";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html"
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string; component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    private storage: Storage,
+    private store: StoreServiceProvider
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: '個別入力', component: IndividualPage },
-      { title: 'List', component: ListPage }
+      { title: "Home", component: HomePage },
+      { title: "個別入力", component: IndividualPage },
+      { title: "List", component: ListPage }
     ];
-
   }
 
   initializeApp() {
@@ -35,6 +42,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // サーバーパスをStoreに保存
+      this.storage.get("remotePath").then(val => {
+        this.store.remotePath = val || "";
+      });
     });
   }
 

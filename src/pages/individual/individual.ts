@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { IndividualDto } from '../../providers/store-service/individual-dto';
 import { StoreServiceProvider } from '../../providers/store-service/store-service';
 import { Subscription } from 'rxjs/Subscription';
+import { InputPage } from '../input/input';
 
 @Component({
   selector: 'page-individual',
@@ -38,6 +39,11 @@ export class IndividualPage {
   pushBackspace() {
     let empNo = this.v.empNo;
     this.v.empNo = empNo.substring(0, empNo.length - 1);
+  }
+
+  pushNext() {
+    console.log('next')
+    this.navCtrl.push(InputPage, {empNo: this.v.empNo})
   }
 
 }

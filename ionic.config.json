@@ -2,6 +2,12 @@
   "name": "attendance",
   "app_id": "",
   "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "",
+      "proxyUrl": "http://192.168.0.104:9000/AttendanceWS"
+    }
+  ],
   "integrations": {
     "cordova": {}
   }

@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>individual</ion-title>
+    <ion-title>個人検索</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,18 +13,12 @@
   <div class="empNo">{{v?.empNo}}</div>
 
   <div class="ten-key">
-      <button ion-button
-          *ngFor="let i of buttonNumbers"
-          (click)="pushNumber(i)"
-          [disabled]="v?.empNo.length >= 5">{{i}}</button>
-      <button ion-button icon-only
-          (click)="pushBackspace()"
-          [disabled]="v?.empNo.length == 0">
-        <ion-icon name="backspace"></ion-icon>
-      </button>
+    <button ion-button outline *ngFor="let i of buttonNumbers" (click)="pushNumber(i)" [disabled]="v?.empNo.length >= 5">{{i}}</button>
+    <button ion-button outline icon-only (click)="pushBackspace()" [disabled]="v?.empNo.length == 0">
+      <ion-icon name="backspace"></ion-icon>
+    </button>
   </div>
 
-  <button ion-button block color="secondary" class="next-button"
-      [disabled]="v?.empNo.length == 0">次へ</button>
+  <button ion-button block class="next-button" (click)="pushNext()" [disabled]="v?.empNo.length == 0">次へ</button>
 
 </ion-content>

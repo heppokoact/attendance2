@@ -1,3 +1,3 @@
 export class IndividualDto {
-  empNo = "";
+  empNo = "3820";
 }
